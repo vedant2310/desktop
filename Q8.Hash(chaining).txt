@@ -1,0 +1,113 @@
+class HashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [[] for _ in range(size)]  # list of lists (chaining)
+
+    def hashfunc(self, key):
+        return key % self.size
+
+    def insert(self, key, value):
+        index = self.hashfunc(key)
+        # check if key already exists
+        for pair in self.table[index]:
+            if pair[0] == key:
+                print("Key already exists! Updating value.")
+                pair[1] = value
+                return
+        self.table[index].append([key, value])
+        print(f"Inserted ({key}, {value}) at index {index}")
+
+    def search(self, key):
+        index = self.hashfunc(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                print(f"Key {key} found with value: {pair[1]}")
+                return
+        print("Key not found!")
+
+    def delete(self, key):
+        index = self.hashfunc(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                self.table[index].remove(pair)
+                print(f"Key {key} deleted successfully.")
+                return
+        print("Key not found!")
+
+    def display(self):
+        print("\n--- Hash Table ---")
+        for i in range(self.size):
+            print(f"Index {i}: {self.table[i]}")
+
+# -------- Main Menu --------
+ht = HashTable()
+
+while True:
+    print("\n=== HASH TABLE MENU ===")
+    print("1. Insert Key-Value")
+    print("2. Search Key")
+    print("3. Delete Key")
+    print("4. Display Table")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == '1':
+        key = int(input("Enter Key: "))
+        value = input("Enter Value: ")
+        ht.insert(key, value)
+
+    elif choice == '2':
+        key = int(input("Enter Key to Search: "))
+        ht.search(key)
+
+    elif choice == '3':
+        key = int(input("Enter Key to Delete: "))
+        ht.delete(key)
+
+    elif choice == '4':
+        ht.display()
+
+    elif choice == '5':
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice!")
+
+
+
+
+Algorithm: Hash Table Using Chaining
+
+Start
+
+Initialize hash table of fixed size (10) with each index as an empty list
+
+Compute hash index as index = key % size (division method)
+
+Insert(key, value):
+
+-Find index using hash function
+
+-Append (key, value) to the list at that index
+
+Search(key):
+
+-Find index using hash function
+
+-Traverse list at that index to find the matching key
+
+Delete(key):
+
+-Find index using hash function
+
+-Remove the pair from list if key matches
+
+Display:
+
+-Print all indexes and their corresponding lists
+
+Repeat menu (Insert, Search, Delete, Display) until user exits
+
+Stop
