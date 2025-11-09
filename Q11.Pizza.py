@@ -1,44 +1,55 @@
-# Graph using adjacency list
-graph = {
-    'Shop': {'A': 4, 'B': 2},
-    'A': {'Shop': 4, 'C': 3, 'D': 5},
-    'B': {'Shop': 2, 'C': 1},
-    'C': {'A': 3, 'B': 1, 'D': 4},
-    'D': {'A': 5, 'C': 4}
-}
+def minKey(key, mstSet, n):
+    min_val = float('inf')
+    min_index = -1
+    for v in range(n):
+        if not mstSet[v] and key[v] < min_val:
+            min_val = key[v]
+            min_index = v
+    return min_index
 
-# Dijkstra’s Algorithm (simple version)
-def shortest_time(graph, start):
-    visited = []
-    distance = {node: float('inf') for node in graph}
-    distance[start] = 0
+def prim(graph, n):
+    key = [float('inf')] * n
+    parent = [-1] * n
+    mstSet = [False] * n
 
-    while len(visited) < len(graph):
-        # Find unvisited node with smallest distance
-        min_node = None
-        for node in graph:
-            if node not in visited:
-                if min_node is None or distance[node] < distance[min_node]:
-                    min_node = node
+    key[0] = 0
 
-        # Visit the node
-        visited.append(min_node)
+    for _ in range(n):
+        u = minKey(key, mstSet, n)
+        mstSet[u] = True
+        for v in range(n):
+            if graph[u][v] > 0 and not mstSet[v] and graph[u][v] < key[v]:
+                key[v] = graph[u][v]
+                parent[v] = u
 
-        # Update distances for its neighbors
-        for neighbor, time in graph[min_node].items():
-            if distance[min_node] + time < distance[neighbor]:
-                distance[neighbor] = distance[min_node] + time
+    total_weight = 0
+    print("\nPizza delivery path:")
+    for i in range(1, n):
+        print(f"Location {parent[i]} → Location {i} = {graph[i][parent[i]]}")
+        total_weight += graph[i][parent[i]]
+    print("Minimum total delivery time:", total_weight)
 
-    return distance
+if _name_ == "_main_":
+    print("Welcome to Pizza Delivery Route Optimizer!")
+    n = int(input("Enter number of locations: "))
+    graph = []
 
+    print("Enter the adjacency matrix (travel times between locations):")
+    print("If no direct path exists, enter 0.")
+    for i in range(n):
+        row_input = input(f"Row {i}: ").split()
+        row = []
+        for item in row_input:
+            row.append(int(item))
+        while len(row) != n:
+            print(f"Please enter exactly {n} values for this row.")
+            row_input = input(f"Row {i}: ").split()
+            row = []
+            for item in row_input:
+                row.append(int(item))
+        graph.append(row)
 
-# Starting point
-result = shortest_time(graph, 'Shop')
-
-# Display result
-print("Minimum time from Shop to each location:")
-for loc in result:
-    print(f"{loc} : {result[loc]} minutes")
+    prim(graph, n)
 
 
 
@@ -67,5 +78,6 @@ Repeat until all nodes are visited:
 Continue until all nodes have been processed
 
 Display the shortest (minimum time) distance from the shop to each location
+
 
 Stop
