@@ -1,94 +1,53 @@
-from collections import deque
+queue = []
+def add(event):
+  queue.append(event)
+  print("Event added successfully")
+def nxt_event():
+  if not queue:
+    print("Nothing to process")
+  else:
+    nevent = queue.pop(0)
+    print("Processing: ", nevent)
+def display():
+  if not queue:
+    print("Queue is empty")
+  else:
+    for i, event in enumerate(queue):
+      print(f"{i +1}  {event}")
+def cancel(event_name):
+  for i in range(len(queue)):
+    if queue[i] == event_name:
+      queue.remove(event_name)
+      print("Removed {event_name}")
+      return
+  print("NOt found")
 
-class EventQueue:
-    def __init__(self):
-        self.queue = deque()
-
-    def add_event(self, event):
-        self.queue.append(event)
-        print(f"Event '{event}' added to queue.")
-
-    def process_event(self):
-        if not self.queue:
-            print("No events to process.")
-        else:
-            event = self.queue.popleft()
-            print(f"Processing event: {event}")
-
-    def display_events(self):
-        if not self.queue:
-            print("No pending events.")
-        else:
-            print("Pending Events in Queue:")
-            for e in self.queue:
-                print("→", e)
-
-    def cancel_event(self, event):
-        if event in self.queue:
-            self.queue.remove(event)
-            print(f"Event '{event}' canceled successfully.")
-        else:
-            print("Event not found or already processed.")
-
-# ---------- Main Menu ----------
-if __name__ == "__main__":
-    eq = EventQueue()
-
-    while True:
-        print("\n=== EVENT PROCESSING SYSTEM ===")
-        print("1. Add Event")
-        print("2. Process Next Event")
-        print("3. Display Pending Events")
-        print("4. Cancel an Event")
-        print("5. Exit")
-
-        choice = input("Enter your choice: ")
-
-        if choice == '1':
-            event = input("Enter Event Name: ")
-            eq.add_event(event)
-
-        elif choice == '2':
-            eq.process_event()
-
-        elif choice == '3':
-            eq.display_events()
-
-        elif choice == '4':
-            event = input("Enter Event Name to Cancel: ")
-            eq.cancel_event(event)
-
-        elif choice == '5':
-            print("Exiting...")
-            break
-
-        else:
-            print("Invalid choice! Please try again.")
+def menu():
+  while True:
 
 
+    print("1. Add")
+    print("2. Process Next event")
+    print("3. Display")
+    print("4. Cancel an event")
 
+    choice = int(input("Enter your choice: "))
 
+    if choice == 1:
 
-"""Short Algorithm (10–12 lines)
+      event = input("Enter the event: ")
+      add(event)
 
-Start
+    elif choice == 2:
 
-Initialize an empty queue using deque().
+      nxt_event()
 
-Display a menu with options to Add, Process, Display, Cancel, or Exit.
+    elif choice == 3:
 
-If the user chooses Add, append the event to the queue.
+      display()
 
-If Process, remove and display the first event from the queue.
+    elif choice == 4:
+      c = input("Enter Event name to be deleted: ")
+      cancel(c)
 
-If Display, show all events currently in the queue.
-
-If Cancel, remove the specified event from the queue if it exists.
-
-If Exit, terminate the program.
-
-For invalid inputs, display an error message.
-
-Repeat steps 3–9 until user exits.
-
-Stop."""
+menu()
