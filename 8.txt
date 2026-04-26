@@ -1,0 +1,11 @@
+1.Use PRIMARY KEY and FOREIGN KEY in CREATE TABLE statements.
+
+2.CREATE INDEX idx_pk_acc ON Account(Account_no);
+
+3.CREATE VIEW Customer_Info AS SELECT * FROM Customer WHERE Age < 45;
+
+4.UPDATE Account SET date_open = '2017-04-16' WHERE Account_no IN (SELECT Account_no FROM Customer_Info);
+
+5.CREATE SEQUENCE branch_seq;
+
+6.CREATE SYNONYM Branch_info FOR Branch;

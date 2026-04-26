@@ -1,0 +1,7 @@
+1.SELECT First_name, Last_name FROM Employee WHERE Salary > (SELECT Salary FROM Employee WHERE Last_name = 'Singh');
+
+2.SELECT e.First_name FROM Employee e JOIN Departments d ON e.department_id = d.department_id JOIN Locations l ON d.Location_id = l.Location_id WHERE l.Country_id = 'US';
+
+3.SELECT Employee_id, Last_name, Manager_id, (SELECT Last_name FROM Employee WHERE Employee_id = e.Manager_id) FROM Employee e;
+
+4.SELECT First_name, Hire_date FROM Employee WHERE Hire_date > (SELECT Hire_date FROM Employee WHERE Last_name = 'Jones');

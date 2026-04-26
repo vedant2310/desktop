@@ -1,0 +1,9 @@
+1.db.Social_Media.find().pretty()
+
+2.db.Social_Media.find({No_of_Posts: {$gt: 100}})
+
+3.db.Social_Media.find({}, {User_Name: 1, Friends_List: 1})
+
+4.db.Social_Media.find({$where: "this.Friends_List.length > 5"}, {User_Id: 1, Friends_List: 1})
+
+5.db.Social_Media.find().sort({No_of_Posts: -1})

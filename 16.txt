@@ -1,0 +1,9 @@
+1.Use REFERENCES for keys.
+
+2.CREATE VIEW Saving_View AS SELECT * FROM Account WHERE Account_type = 'Saving' AND open_date = '2018-08-16';
+
+3.UPDATE Saving_View SET Cust_Address = 'Pune' WHERE CustID = 103;
+
+4.CREATE INDEX idx_cust ON Customer(CustID);
+
+5.CREATE SYNONYM Cust_info FOR Customer;

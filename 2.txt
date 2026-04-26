@@ -1,0 +1,14 @@
+Problem Statement 2 (Agg. & Index - MongoDB)
+1.db.Movies_Data.aggregate([{$group: {_id: "$Director", count: {$sum: 1}}}])
+
+2.db.Movies_Data.aggregate([{$group: {_id: "$Genre", maxCol: {$max: "$BoxOfficeCollection"}}}])
+
+3.db.Movies_Data.aggregate([{$group: {_id: "$Genre", maxCol: {$max: "$BoxOfficeCollection"}}}, {$sort: {maxCol: 1}}])
+
+4.db.Movies_Data.createIndex({Movie_ID: 1})
+
+5.db.Movies_Data.createIndex({Movie_Name: 1, Director: 1})
+
+6.db.Movies_Data.dropIndex("Movie_ID_1")
+
+7.db.Movies_Data.dropIndex("Movie_Name_1_Director_1")

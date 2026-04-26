@@ -1,0 +1,9 @@
+1.SELECT First_name, Last_name, Salary FROM Employee WHERE Salary > (SELECT AVG(Salary) FROM Employee) AND department_id IN (SELECT Department_id FROM Departments WHERE Department_name = 'IT');
+
+2.SELECT First_name, Last_name, Salary FROM Employee WHERE Salary = (SELECT MIN(Salary) FROM Employee);
+
+3.SELECT Employee_id, First_name, Salary FROM Employee e WHERE Salary > (SELECT AVG(Salary) FROM Employee WHERE department_id = e.department_id);
+
+4.SELECT d.Department_name, m.Manager_name, l.city FROM Departments d JOIN Manager m ON d.Manager_id = m.Manager_id JOIN Locations l ON d.Location_id = l.Location_id;
+
+5.SELECT First_name, Last_name, Hire_date FROM Employee WHERE TIMESTAMPDIFF(YEAR, Hire_date, CURDATE()) > 15;

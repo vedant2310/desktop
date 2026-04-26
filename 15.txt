@@ -1,0 +1,12 @@
+DECLARE
+    v_exp NUMBER; v_sal NUMBER; v_id NUMBER := &id;
+BEGIN
+    SELECT salary, (MONTHS_BETWEEN(SYSDATE, DoJ)/12) INTO v_sal, v_exp FROM Employee WHERE emp_id = v_id;
+    IF v_exp > 10 THEN v_sal := v_sal * 1.2;
+    ELSIF v_exp > 5 THEN v_sal := v_sal * 1.1;
+    ELSE v_sal := v_sal * 1.05;
+    END IF;
+    INSERT INTO Salary_Increment VALUES (v_id, v_sal);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN DBMS_OUTPUT.PUT_LINE('No employee');
+END;

@@ -1,0 +1,11 @@
+1.db.Student_Data.aggregate([{$group: {_id: "$Department", avgMarks: {$avg: "$Marks"}}}])
+
+2.db.Student_Data.aggregate([{$group: {_id: "$Department", count: {$sum: 1}}}])
+
+3.db.Student_Data.aggregate([{$group: {_id: "$Department", maxM: {$max: "$Marks"}}}, {$sort: {maxM: -1}}])
+
+4.db.Student_Data.createIndex({Student_ID: 1})
+
+5.db.Student_Data.createIndex({Student_Name: 1, Department: 1})
+
+6.db.Student_Data.dropIndex("Student_ID_1")

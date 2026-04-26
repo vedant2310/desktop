@@ -1,0 +1,11 @@
+1.db.Student.find({Enrolled_Courses: {$in: ["DBMS", "TOC"]}})
+
+2.db.Student.find({$or: [{Marks: {$gt: 50}}, {Class: "TE"}]})
+
+3.db.Student.updateOne({Roll_No: "A10"}, {$set: {Name: "New Name"}})
+
+4.db.Student.find().sort({Marks: -1}).skip(2).limit(2)
+
+5.db.Student.deleteMany({Marks: {$lt: 20}})
+
+6.db.Student.deleteOne({})

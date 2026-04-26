@@ -1,0 +1,13 @@
+1.ALTER TABLE Customer MODIFY Email_ID VARCHAR(20);
+
+2.ALTER TABLE Customer MODIFY Email_ID VARCHAR(20) NOT NULL;
+
+3.SELECT COUNT(*) FROM Account WHERE Balance > 50000;
+
+4.SELECT AVG(Balance) FROM Account WHERE Account_type = 'Saving Account';
+
+5.SELECT * FROM Customer WHERE Cust_Address = 'Pune' OR Name LIKE 'A%';
+
+6.CREATE TABLE Saving_Account AS SELECT * FROM Account WHERE Account_type = 'Saving Account';
+
+7.SELECT c.* FROM Customer c JOIN Account a ON c.CustID = a.CustID WHERE a.Balance >= 20000 ORDER BY c.Age;

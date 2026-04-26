@@ -1,0 +1,11 @@
+Salary Backup:
+CREATE OR REPLACE TRIGGER trg_sal_backup AFTER UPDATE OF salary ON Employee FOR EACH ROW
+BEGIN
+    INSERT INTO Salary_Backup VALUES (:OLD.emp_id, :OLD.salary, :NEW.salary, (:NEW.salary - :OLD.salary));
+END;
+
+Prevent CEO Delete:
+CREATE OR REPLACE TRIGGER trg_no_ceo_del BEFORE DELETE ON Employee FOR EACH ROW
+BEGIN
+    IF :OLD.designation = 'CEO' THEN RAISE_APPLICATION_ERROR(-20001, 'Cannot delete CEO'); END IF;
+END;

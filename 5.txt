@@ -1,0 +1,5 @@
+1.Parameterized: CURSOR c1(min_p NUMBER, max_p NUMBER) IS SELECT * FROM Products WHERE Product_Type='Apparel' AND Price BETWEEN min_p AND max_p;
+
+2.Explicit: CURSOR c2 IS SELECT * FROM Products WHERE Price > 5000;
+
+3.Implicit: UPDATE Products SET Price = Price + 1000; DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);

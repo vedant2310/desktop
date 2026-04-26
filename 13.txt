@@ -1,0 +1,13 @@
+1.ALTER TABLE Customer ADD Email_Address VARCHAR(50);
+
+2.ALTER TABLE Customer CHANGE Email_Address Email_ID VARCHAR(50);
+
+3.SELECT * FROM Customer c JOIN Account a ON c.CustID = a.CustID ORDER BY a.Balance DESC LIMIT 1;
+
+4.SELECT * FROM Customer c JOIN Account a ON c.CustID = a.CustID WHERE a.Account_type = 'Saving Account' ORDER BY a.Balance ASC LIMIT 1;
+
+5.SELECT * FROM Customer WHERE Cust_Address = 'Pune' AND Age > 35;
+
+6.SELECT Cust_ID, Name, Age FROM Customer ORDER BY Age ASC;
+
+7.SELECT Account_type, COUNT(*) FROM Account GROUP BY Account_type;

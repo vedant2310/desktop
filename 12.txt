@@ -1,0 +1,3 @@
+1.Commission: Use a cursor to loop through employees and IF-ELSIF to update commission based on salary and experience (using MONTHS_BETWEEN).
+
+2.Manager Function: SELECT Manager_name INTO v_name FROM Manager m JOIN Departments d ON m.Manager_id = d.Manager_id WHERE d.Department_id = p_id; RETURN v_name;

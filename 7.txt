@@ -1,0 +1,3 @@
+1.No Sal Decrease: IF :NEW.salary < :OLD.salary THEN RAISE_APPLICATION_ERROR(-20001, 'No decrease'); END IF;
+
+2.Job History: INSERT INTO job_history VALUES (:OLD.emp_id, :OLD.job_title, :OLD.dept_id, :OLD.DoJ, SYSDATE);

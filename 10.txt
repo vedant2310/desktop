@@ -1,0 +1,5 @@
+1.Explicit: CURSOR c1 IS SELECT * FROM Employee WHERE Salary > 50000;
+
+2.Implicit: SELECT COUNT(*) INTO v_count FROM Employee; DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT);
+
+3.Parameterized: CURSOR c1(p_id NUMBER) IS SELECT Salary FROM Employee WHERE Emp_id = p_id;
